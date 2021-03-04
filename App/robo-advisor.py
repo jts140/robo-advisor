@@ -5,6 +5,8 @@ import requests
 import json
 import csv
 
+from dotenv import load_dotenv
+load_dotenv() #loads contents of dot env file
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -19,7 +21,11 @@ def to_usd(my_price):
 
 #info inputs
 
-request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo"
+api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
+ticker = "IBM" #make user input
+
+
+request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey={api_key}"
 response = requests.get(request_url)
 
 from datetime import datetime
@@ -33,7 +39,7 @@ parsed_response = json.loads(response.text)
 
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 
-ticker = parsed_response["Meta Data"]["2. Symbol"]
+#ticker = parsed_response["Meta Data"]["2. Symbol"]
 
 
 tsd = parsed_response["Time Series (Daily)"]
