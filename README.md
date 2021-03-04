@@ -1,6 +1,6 @@
 # robo-advisor
 
-A program that will recommend stock picks to a user
+A program that tells a user if now is a good time to invest in a stock which the user has selected
 
 (https://github.com/jts140/robo-advisor)
 
