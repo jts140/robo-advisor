@@ -20,40 +20,48 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
+#saves time for output
+from datetime import datetime
+now = datetime.now()
+
+
 #info inputs
 
 api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
 
-#ticker = "IBM" #make user input
 
 #data validation for ticker
 is_valid_ticker = False 
 
 while  is_valid_ticker == False:
+   
     ticker = input("Please enter a valid stock ticker (ie 1-5 letter ticker and trades on a US exchange):")
+   
     if len(ticker) >= 1 and len(ticker) <=5 and ticker.isalpha():
         ticker = ticker.upper()
         
+        #request url and set up dictionary so code can test if stock ticker is supported by API
         request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey={api_key}"
+        
         response = requests.get(request_url)
-        print(response)
 
-        is_valid_ticker = True 
+        parsed_response = json.loads(response.text)
+        
+        if parsed_response == {'Error Message': 'Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY.'}:
+            print("You have entered a stock ticker that is either invalid or not tracked by the API, please try again")
+
+            is_valid_ticker = False
+
+        else:
+            
+            is_valid_ticker = True 
+
     else:
+
         is_valid_ticker = False
+
         print("You have entered an invalid stock ticker, please try again")
 
-
-
-
-from datetime import datetime
-now = datetime.now()
-
-parsed_response = json.loads(response.text)
-#for testing code
-print(parsed_response)
-
-#adding data validation for request page
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 
 tsd = parsed_response["Time Series (Daily)"]
@@ -77,10 +85,10 @@ for date in dates:
 
 recent_high = max(high_prices)
 recent_low = min(low_prices)
+
+
+
 #info outputs
-
-
-
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
 
 csv_headers =["timestamp", "open", "high", "low", "close", "volume"]
