@@ -7,6 +7,7 @@ import csv
 
 from dotenv import load_dotenv
 load_dotenv() #loads contents of dot env file
+
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
