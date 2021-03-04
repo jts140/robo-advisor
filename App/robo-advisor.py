@@ -27,8 +27,6 @@ parsed_response = json.loads(response.text)
 
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 
-
-
 tsd = parsed_response["Time Series (Daily)"]
 
 dates =list(tsd.keys()) #assumes first day is on top, but may need to sort if data structure changes
@@ -37,7 +35,15 @@ latest_day = dates[0]
 
 latest_close = tsd[latest_day]["4. close"]
 
-print(type(latest_close))
+# max of all the high prices
+# I used closing prices because 52 week high/low is based on closing price
+high_prices  = []
+for date in dates:
+    high_price = tsd[date]["4. close"]
+    high_prices.append(float(high_price))
+
+
+recent_high = max(high_prices)
 
 #info outputs
 
@@ -52,7 +58,7 @@ print("REQUEST AT: 2018-02-20 02:00pm")
 print("-------------------------")
 print(f"LATEST DAY: {last_refreshed}")
 print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
-print("RECENT HIGH: $101,000.00")
+print(f"RECENT HIGH: {to_usd(float(recent_high))}")
 print("RECENT LOW: $99,000.00")
 print("-------------------------")
 print("RECOMMENDATION: BUY!")
