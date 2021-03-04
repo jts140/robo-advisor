@@ -1,6 +1,6 @@
 # robo-advisor
 
-A program a user can use to recommend stock picks
+A program that will recommend stock picks to a user
 
 (https://github.com/jts140/robo-advisor)
 
@@ -37,9 +37,9 @@ pip install -r requirements.txt
 ##UPDATE when program is built
 
 In in the root directory of your local repository, create a new file called ".env", and update the contents of the ".env" file to specify the tax rate of your local area:
-
+  '''
   ALPHAVANTAGE_API_KEY="abc123"
-
+  '''
 > NOTE: the ".env" file is usually the place for passing configuration options and secret credentials, so as a best practice we don't upload this file to version control (which is accomplished via a corresponding entry in the [.gitignore](/.gitignore) file)
 
 ## Usage
