@@ -8,6 +8,7 @@ import csv
 from dotenv import load_dotenv
 load_dotenv() #loads contents of dot env file
 
+#usd formatting function
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -86,7 +87,12 @@ for date in dates:
 recent_high = max(high_prices)
 recent_low = min(low_prices)
 
+#buy or sell recomendation
 
+discount = (1 - (float(latest_close)/float(recent_high)))
+print(discount)
+premium = ((float(latest_close)/float(recent_low))-1)
+print(premium)
 
 #info outputs
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
