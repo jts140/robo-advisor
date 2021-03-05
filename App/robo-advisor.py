@@ -92,6 +92,13 @@ recent_low = min(low_prices)
 discount = (1 - (float(latest_close)/float(recent_high)))
 premium = ((float(latest_close)/float(recent_low))-1)
 
+if discount >= .2:
+    recomendation = "Buy!"
+    reason = f"The stock is trading at a {round(discount*100,2)}% discount compared to its recent high"
+else:
+    recomendation = "Sell"
+    reason = f"The stock is trading at a {round(discount*100,2)}% discount compared to its recent high"
+
 #info outputs
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
 
@@ -123,8 +130,8 @@ print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
 print(f"RECENT HIGH: {to_usd(float(recent_high))}")
 print(f"RECENT LOW: {to_usd(float(recent_low))}")
 print("-------------------------")
-print("RECOMMENDATION: BUY!")
-print("RECOMMENDATION REASON: TODO")
+print(f"RECOMMENDATION:{recomendation}")
+print(f"RECOMMENDATION REASON:{reason}")
 print("-------------------------")
 print(f"WRITING DATA TO CSV: {csv_file_path}")
 print("-------------------------")
