@@ -42,7 +42,7 @@ while  is_valid_ticker == False:
         
         #request url and set up dictionary so code can test if stock ticker is supported by API
         request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey={api_key}"
-        
+
         response = requests.get(request_url)
 
         parsed_response = json.loads(response.text)
@@ -112,7 +112,7 @@ print("-------------------------")
 print(f"SELECTED SYMBOL: {ticker}")
 print("-------------------------")
 print("REQUESTING STOCK MARKET DATA...")
-print(f"REQUEST AT: {now}") #format this better 
+print("REQUEST AT: " + now.strftime("%Y-%m-%d %H:%M:%S")) 
 print("-------------------------")
 print(f"LATEST DAY: {last_refreshed}")
 print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
