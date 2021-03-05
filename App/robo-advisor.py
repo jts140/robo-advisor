@@ -59,9 +59,9 @@ while  is_valid_ticker == False:
 
     else:
 
-        is_valid_ticker = False
-
         print("You have entered an invalid stock ticker, please try again")
+        
+        is_valid_ticker = False
 
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 
