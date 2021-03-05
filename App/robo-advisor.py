@@ -90,9 +90,7 @@ recent_low = min(low_prices)
 #buy or sell recomendation
 
 discount = (1 - (float(latest_close)/float(recent_high)))
-print(discount)
 premium = ((float(latest_close)/float(recent_low))-1)
-print(premium)
 
 #info outputs
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
