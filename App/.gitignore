@@ -1,0 +1,4 @@
+# this is the "app/.gitignore" file
+
+# ignore the temp plot files in this "data" directory:
+*temp-plot.html
