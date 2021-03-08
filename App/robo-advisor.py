@@ -154,4 +154,3 @@ plotly.offline.plot({
     "data": [go.Scatter(x=dates, y=close_prices)],
     "layout": go.Layout(title=f"{ticker} close prices")
 }, auto_open=True)
-
