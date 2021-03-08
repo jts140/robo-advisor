@@ -50,7 +50,7 @@ while  is_valid_ticker == False:
         parsed_response = json.loads(response.text)
         
         if parsed_response == {'Error Message': 'Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY.'}:
-            
+
             print("You have entered a stock ticker that is either invalid or not tracked by the API, please try again")
 
             is_valid_ticker = False
@@ -75,16 +75,22 @@ latest_day = dates[0]
 
 latest_close = tsd[latest_day]["4. close"]
 
+# graph done with Joe O'Brien
 # max of all the high prices and min of all low prices
 high_prices  = []
 low_prices = []
+close_prices = []
 
 for date in dates:
     high_price = tsd[date]["2. high"]
     low_price = tsd[date]["3. low"]
+    #for graph
+    daily_close= (tsd[day]["4. close"])
+    
     high_prices.append(float(high_price))
     low_prices.append(float(low_price))
-
+    #for graph
+    close_prices.append(float(daily_close))
 
 recent_high = max(high_prices)
 recent_low = min(low_prices)
@@ -140,5 +146,12 @@ print("-------------------------")
 print("HAPPY INVESTING!")
 print("-------------------------")
 
+#add graph (done with Joe O'Brien)
+import plotly
+import plotly.graph_objs as go
 
+plotly.offline.plot({
+    "data": [go.Scatter(x=dates, y=close_prices)],
+    "layout": go.Layout(title=f"{ticker} close prices")
+}, auto_open=True)
 
