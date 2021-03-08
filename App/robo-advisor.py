@@ -39,6 +39,7 @@ while  is_valid_ticker == False:
     ticker = input("Please enter a valid stock ticker (ie 1-5 letter ticker and trades on a US exchange):")
    
     if len(ticker) >= 1 and len(ticker) <=5 and ticker.isnumeric() == False:
+        
         ticker = ticker.upper()
         
         #request url and set up dictionary so code can test if stock ticker is supported by API
@@ -49,6 +50,7 @@ while  is_valid_ticker == False:
         parsed_response = json.loads(response.text)
         
         if parsed_response == {'Error Message': 'Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY.'}:
+            
             print("You have entered a stock ticker that is either invalid or not tracked by the API, please try again")
 
             is_valid_ticker = False
