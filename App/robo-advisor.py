@@ -85,7 +85,7 @@ for date in dates:
     high_price = tsd[date]["2. high"]
     low_price = tsd[date]["3. low"]
     #for graph
-    daily_close= (tsd[day]["4. close"])
+    daily_close= (tsd[date]["4. close"])
     
     high_prices.append(float(high_price))
     low_prices.append(float(low_price))
@@ -138,8 +138,8 @@ print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
 print(f"RECENT HIGH: {to_usd(float(recent_high))}")
 print(f"RECENT LOW: {to_usd(float(recent_low))}")
 print("-------------------------")
-print(f"RECOMMENDATION:{recomendation}")
-print(f"RECOMMENDATION REASON:{reason}")
+print(f"RECOMMENDATION: {recomendation}")
+print(f"RECOMMENDATION REASON: {reason}")
 print("-------------------------")
 print(f"WRITING DATA TO CSV: {csv_file_path}")
 print("-------------------------")
