@@ -1,6 +1,6 @@
 # robo-advisor
 
-A program that tells a user if now is a good time to invest in a stock which the user has selected
+A program that tells a user if now is a good time to invest in a user selected stock. The program also outputs a graph of closing prices for the past 100 days.
 
 (https://github.com/jts140/robo-advisor)
 
@@ -34,9 +34,8 @@ pip install -r requirements.txt
 
 
 ## Setup
-##UPDATE when program is built
 
-In in the root directory of your local repository, create a new file called ".env", and update the contents of the ".env" file to specify the tax rate of your local area:
+In in the root directory of your local repository, create a new file called ".env", and update the contents of the ".env" file to specify your ALPHAVANTAGE api key:
   '''
   ALPHAVANTAGE_API_KEY="abc123"
   '''
