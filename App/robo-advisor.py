@@ -38,7 +38,7 @@ while  is_valid_ticker == False:
    
     ticker = input("Please enter a valid stock ticker (ie 1-5 letter ticker and trades on a US exchange):")
    
-    if len(ticker) >= 1 and len(ticker) <=5 and ticker.isalpha():
+    if len(ticker) >= 1 and len(ticker) <=5 and ticker.isnumeric() == False:
         ticker = ticker.upper()
         
         #request url and set up dictionary so code can test if stock ticker is supported by API
